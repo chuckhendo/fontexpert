@@ -8,7 +8,7 @@ end
 
 post "/api" do
 
-  File.open('public/uploads/' + params['upload'][:filename], "w") do |f|
+  File.open('tmp/' + params['upload'][:filename], "w") do |f|
     f.write(params['upload'][:tempfile].read)
   end
   return "The file was successfully uploaded!"
