@@ -3,7 +3,8 @@
 var fontexpert = angular
   .module('fontexpert', [
     'ngRoute',
-    'angularFileUpload'
+    'angularFileUpload',
+    'angularTreeview'
   ])
   .config(function ($routeProvider) {
     $routeProvider

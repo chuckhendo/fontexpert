@@ -1,7 +1,7 @@
 .psdWrapper {
 	position: relative;
-	display: inline-block;
-	background: red;
+	float: left;
+	width: 75%;
 }
 
 .psdWrapper img {
@@ -9,16 +9,24 @@
 	margin: 0;
 }
 
-.layer {
+.psdWrapper .layer {
 	position: absolute;
 	background: rgba(200,0,0,0.5);
 	opacity: 0;
 	transition: 0.3s opacity;
 }
 
-.layer:hover {
+.psdWrapper .layer:hover {
 	opacity: 1;
 }
+
+.layers {
+	width: 25%;
+	float: left;
+}
+
+
+
 
 .progress {
 	width: 300px;
