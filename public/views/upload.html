@@ -5,3 +5,8 @@
 <div ng-file-drop-available="dropSupported=true" 
     ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
 <button ng-click="upload.abort()">Cancel Upload</button>
+
+<div class="progress">
+	<div class="progress-inner" style="width: {{ uploadPercent }}%;"></div>
+	<div class="progress-text"><span ng-show="uploadPercent < 100">{{ uploadPercent }}%</span><span ng-show="uploadPercent == 100">Processing...</span></div>
+</div>

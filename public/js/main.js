@@ -35,7 +35,7 @@ fontexpert.controller('UploadCtrl', function($scope, $upload, $rootScope, $locat
         /* customize how data is added to formData. See #40#issuecomment-28612000 for sample code */
         //formDataAppender: function(formData, key, val){}
       }).progress(function(evt) {
-        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+        $scope.uploadPercent = parseInt(100.0 * evt.loaded / evt.total);
       }).success(function(data, status, headers, config) {
         // file is uploaded successfully
         $rootScope.psdData = data;
