@@ -71,7 +71,7 @@ post "/api" do
 	end
 
 
-	psd.image.save_as_png('tmp/renders/' + render_file_name)
+	psd.image.save_as_png('tmp/renders-' + render_file_name)
 
 	content_type :json
 	return returnArray.to_json
@@ -79,7 +79,7 @@ post "/api" do
 end
 
 get '/renders/:render_file_name' do 
-	send_file File.join("tmp/renders/#{params[:render_file_name]}")
+	send_file File.join("tmp/renders-#{params[:render_file_name]}")
 end
 
 
