@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'psd'
 require 'json'
+require 'securerandom'
+
 
 set :public_folder, 'public'
 
@@ -10,19 +12,25 @@ end
 
 post "/api" do
 
-	file_name = 'tmp/' + params['upload'][:filename]
+	file_name = 'tmp/' + params['file'][:filename]
 
 	File.open(file_name, "w") do |f|
-		f.write(params['upload'][:tempfile].read)
+		f.write(params['file'][:tempfile].read)
 	end
 
+	render_file_name = SecureRandom.urlsafe_base64(30) + '.png'
 
 	psd = PSD.new(file_name)
 
 	psd.parse!
 
 	psdinfo = psd.tree.descendant_layers
-	returnArray = []
+
+	returnArray = {
+		"image" => render_file_name,
+		"layers" => []
+	}
+
 	psdinfo.each do |item|
 		if item.type && item.type.engine_data
 
@@ -49,21 +57,29 @@ post "/api" do
 			}
 
 			returnItem = {
-				"layer" => {"width" => item.layer.width, "height" => item.layer.height, "top" => item.layer.top, "left" => item.layer.left },
+				"width" => item.layer.width, 
+				"height" => item.layer.height, 
+				"top" => item.layer.top, 
+				"left" => item.layer.left,
 				"text" => runs
 			}
 
 
-			returnArray.push(returnItem)
+			returnArray["layers"].push(returnItem)
 
 		end
 	end
 
-	# psd.tree.save_as_png('tmp/renders/' + 'tmp.png')
+
+	psd.image.save_as_png('tmp/renders/' + render_file_name)
 
 	content_type :json
 	return returnArray.to_json
 
+end
+
+get '/renders/:render_file_name' do 
+	send_file File.join("tmp/renders/#{params[:render_file_name]}")
 end
 
 

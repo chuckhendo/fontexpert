@@ -1,0 +1,21 @@
+.psdWrapper {
+	position: relative;
+	display: inline-block;
+	background: red;
+}
+
+.psdWrapper img {
+	display: block;
+	margin: 0;
+}
+
+.layer {
+	position: absolute;
+	background: rgba(200,0,0,0.5);
+	opacity: 0;
+	transition: 0.3s opacity;
+}
+
+.layer:hover {
+	opacity: 1;
+}

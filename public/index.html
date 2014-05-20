@@ -1,15 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="fontexpert">
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/main.css">
 	<title></title>
 </head>
 <body>
-	<form action="/api" method="POST" enctype="multipart/form-data">
-		<input type="file" name="upload">
-		<input type="submit" value="Submit">
-	</form>
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<div ng-view></div>
+
+	<script src="bower_components/angularjs-file-upload/angular-file-upload-shim.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angularjs-file-upload/angular-file-upload.js"></script>
 	<script src="js/main.js"></script>
 </body>
 </html>
