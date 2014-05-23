@@ -1,5 +1,5 @@
 production:
-sessions:
+  sessions:
     default:
       uri: <%= ENV['MONGOHQ_URL'] %>
       max_retries_on_connection_failure: 20
