@@ -7,7 +7,7 @@ require 'securerandom'
 
 
 
-PSD_Text = Class.new do
+class PSD_Text
 	def initialize(file_name)
 		@psd = PSD.new(file_name)
 		@psd.parse!
@@ -19,8 +19,8 @@ PSD_Text = Class.new do
 		Dir.mkdir 'tmp' unless File.directory?('tmp')
 		
 		# generate a random filename for our render, and save it to disk
-		render_file_name = SecureRandom.urlsafe_base64(30) + '.png'
-		@psd.image.save_as_png('tmp/renders-' + render_file_name)
+		render_file_name = SecureRandom.urlsafe_base64(30)
+		@psd.image.save_as_png("tmp/renders-#{render_file_name}.png")
 		return render_file_name
 	end
 	

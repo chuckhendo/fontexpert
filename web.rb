@@ -1,11 +1,20 @@
 require 'sinatra'
-require 'psd'
 require 'json'
-require 'securerandom'
+require 'mongoid'
 require_relative 'lib/PSD_Text'
 
 
 set :public_folder, 'public'
+
+Mongoid.load!("config/mongoid.yml")
+
+# Separate session class/document for the stored PSD - probably not the best way to be doing this...
+class Session
+  include Mongoid::Document
+  field :layer_data, type: Hash
+end
+
+
 
 get "/" do
 	send_file File.join(settings.public_folder, 'index.html')
@@ -22,12 +31,19 @@ post "/api" do
 
 	all_psd = PSD_Text.new(file_name)
 
-	return {
-		image: all_psd.create_render,
+	render = all_psd.create_render
+	return_hash = {
+		image: "#{render}.png",
+		id: render,
 		layers: all_psd.get_text
-	}.to_json
+	}
 
+	session = Session.new
 
+	session.layer_data = return_hash
+	session.save!
+
+	return return_hash.to_json
 end
 
 get '/renders/:render_file_name' do 
