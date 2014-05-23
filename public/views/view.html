@@ -16,10 +16,7 @@
 			<ul>
 				<li ng-repeat="run in layer.text">{{ run.text }}
 					<ul>
-						<li>{{ run['font-family'] }}</li>
-						<li>{{ run['color'] }}</li>
-						<li>{{ run['font-size'] }}</li>
-
+						<li ng-repeat="(key, value) in run.font_info">{{ key }}: {{ value }}</li>
 					</ul>
 				</li>
 			</ul>
