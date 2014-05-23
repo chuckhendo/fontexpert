@@ -1,6 +1,6 @@
 <div class="psdWrapper">
-	<img ng-src="/renders/{{ psdData.image }}">
-	<div class="layer" ng-repeat="layer in psdData.layers" style="top: {{ layer.top }}px; left: {{ layer.left }}px; width: {{ layer.width }}px; height: {{ layer.height }}px">
+	<img ng-src="/renders/{{ psdData.layer_data.image }}">
+	<div class="layer" ng-repeat="layer in psdData.layer_data.layers" style="top: {{ layer.top }}px; left: {{ layer.left }}px; width: {{ layer.width }}px; height: {{ layer.height }}px">
 		<div class="hover">
 			<div ng-repeat="run in layer.text">
 				{{ run.text }}
@@ -11,7 +11,7 @@
 
 <div class="layers">
 	<ul>
-		<li ng-repeat="layer in psdData.layers">
+		<li ng-repeat="layer in psdData.layer_data.layers">
 			{{ layer.name }}
 			<ul>
 				<li ng-repeat="run in layer.text">{{ run.text }}

@@ -12,6 +12,7 @@ Mongoid.load!("config/mongoid.yml")
 class Session
   include Mongoid::Document
   field :layer_data, type: Hash
+  field :session_id, type: String
 end
 
 
@@ -34,16 +35,21 @@ post "/api" do
 	render = all_psd.create_render
 	return_hash = {
 		image: "#{render}.png",
-		id: render,
 		layers: all_psd.get_text
 	}
 
 	session = Session.new
 
 	session.layer_data = return_hash
+	session.session_id = render
 	session.save!
 
-	return return_hash.to_json
+	return session.to_json
+end
+
+get "/api/:session_id" do
+	session = Session.where(session_id: params[:session_id]).first
+	return session.to_json
 end
 
 get '/renders/:render_file_name' do 
