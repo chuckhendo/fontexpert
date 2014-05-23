@@ -80,6 +80,7 @@ private
 				"height" => layer.height, 
 				"top" => layer.top, 
 				"left" => layer.left,
+				"name" => layer.name,
 				"text" => runs
 			}
 		

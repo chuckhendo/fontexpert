@@ -12,7 +12,7 @@
 <div class="layers">
 	<ul>
 		<li ng-repeat="layer in psdData.layers">
-			Layer
+			{{ layer.name }}
 			<ul>
 				<li ng-repeat="run in layer.text">{{ run.text }}
 					<ul>
