@@ -12,19 +12,31 @@
 
 	<div ng-view></div>
 
-	<div class="layers">
-		<ul>
-			<li ng-repeat="layer in psdData.layer_data.layers">
-				{{ layer.name }}
-				<ul>
-					<li ng-repeat="run in layer.text">{{ run.text }}
+	<div class="layers" ng-controller="ListCtrl">
+		<div ng-show="psdData.layer_data.layers">
+			<input type="checkbox" id="merge-layers" ng-model="mergeLayers"><label for="merge-layers">Merge Layers</label>
+			<div ng-switch="mergeLayers">
+				<ul ng-switch-when="true">
+					<li ng-repeat="layer in mergedLayers">
 						<ul>
-							<li ng-repeat="(key, value) in run.font_info">{{ key }}: {{ value }}</li>
+							<li ng-repeat="(key, value) in layer[0].font_info">{{ key }}: {{ value }}</li>
 						</ul>
 					</li>
 				</ul>
-			</li>
-		</ul>
+				<ul ng-switch-default>
+					<li ng-repeat="layer in layers">
+						{{ layer.name }}
+						<ul>
+							<li ng-repeat="run in layer.text">{{ run.text }}
+								<ul>
+									<li ng-repeat="(key, value) in run.font_info">{{ key }}: {{ value }}</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 
 	<script src="bower_components/angularjs-file-upload/angular-file-upload-shim.js"></script>
@@ -32,6 +44,7 @@
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="bower_components/angularjs-file-upload/angular-file-upload.js"></script>
 	<script src="bower_components/angular-treeview/angular.treeview.js"></script>
+	<script src="bower_components/lodash/dist/lodash.min.js"></script>
 	<script src="js/main.js"></script>
 </body>
 </html>

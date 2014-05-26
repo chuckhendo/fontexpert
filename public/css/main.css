@@ -78,6 +78,22 @@ header h1, header h1 a {
 	overflow: auto;
 	float: right;
 	background: #f0f0f0;
+	padding: 10px;
+}
+
+.layers ul {
+	margin: 0;
+	padding: 10px 0 0 10px;
+	list-style: none;
+}
+
+.layers > div > div > ul > li {
+	margin: 5px 0;
+}
+
+.layers li {
+	background: rgba(0,0,0,0.1);
+	padding: 10px 0 10px 10px;
 }
 
 

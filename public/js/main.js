@@ -66,3 +66,36 @@ fontexpert.controller('ViewCtrl', function($scope, $rootScope, $routeParams, $ht
       });
   }
 });
+
+fontexpert.controller('ListCtrl', function($scope, $rootScope) {
+  $rootScope.$watch('psdData', function() {
+    if($rootScope.psdData) {
+      $scope.layers = $rootScope.psdData.layer_data.layers;
+      $scope.mergedLayers = mergeLayers();
+    }
+  });
+
+  var mergeLayers = function() {
+    var allLayers = $rootScope.psdData.layer_data.layers;
+
+    var mergedLayers = _.chain(allLayers)
+      .pluck('text')
+      .flatten()
+      .groupBy(function(obj) {
+        return (obj.font_info['font-size']  + obj.font_info['font-family'] + obj.font_info.color)
+      })     
+      .toArray()
+      .sortBy(function(layer) { return layer[0].font_info['font-size'] }) 
+      .reverse()
+      .value()  
+    return mergedLayers;
+  }
+});
+
+fontexpert.filter('reverse', function() {
+  return function(items) {
+    console.log(items);
+    return items.slice().reverse();
+  };
+});
+
