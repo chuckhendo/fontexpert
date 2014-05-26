@@ -1,25 +1,9 @@
-<div class="psdWrapper">
-	<img ng-src="/renders/{{ psdData.layer_data.image }}">
-	<div class="layer" ng-repeat="layer in psdData.layer_data.layers" style="top: {{ layer.top }}px; left: {{ layer.left }}px; width: {{ layer.width }}px; height: {{ layer.height }}px">
-		<div class="hover">
-			<div ng-repeat="run in layer.text">
-				{{ run.text }}
-			</div>
-		</div>		
+<div class="view">
+	<div class="psdWrapper">
+		<img ng-src="/renders/{{ psdData.layer_data.image }}" ng-show="psdData">
+		<div class="layer" ng-repeat="layer in psdData.layer_data.layers" style="top: {{ layer.top }}px; left: {{ layer.left }}px; width: {{ layer.width }}px; height: {{ layer.height }}px">
+			<div class="hover">
+			</div>		
+		</div>
 	</div>
-</div>
-
-<div class="layers">
-	<ul>
-		<li ng-repeat="layer in psdData.layer_data.layers">
-			{{ layer.name }}
-			<ul>
-				<li ng-repeat="run in layer.text">{{ run.text }}
-					<ul>
-						<li ng-repeat="(key, value) in run.font_info">{{ key }}: {{ value }}</li>
-					</ul>
-				</li>
-			</ul>
-		</li>
-	</ul>
 </div>

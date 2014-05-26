@@ -1,12 +1,58 @@
+* {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+header {
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	background: #444;
+	padding: 0 20px;
+}
+
+header h1, header h1 a {
+	line-height: 50px;
+	color: #fafafa;
+	font-weight: normal;
+	margin: 0;
+	text-decoration: none;
+}
+
+.upload {
+	text-align: left;
+	padding: 20px;
+}
+
+
+
+.view {
+	position: absolute;
+	left: 0;
+	right: 25%;
+	top: 50px;
+	bottom: 0;
+	overflow: auto;
+	text-align: center;
+}
+
 .psdWrapper {
 	position: relative;
-	float: left;
-	width: 75%;
+	margin: 10px auto;
+	max-width: 100%;
+	display: inline-block;
 }
 
 .psdWrapper img {
 	display: block;
-	margin: 0;
 }
 
 .psdWrapper .layer {
@@ -20,9 +66,18 @@
 	opacity: 1;
 }
 
+
+
+
 .layers {
-	width: 25%;
-	float: left;
+	position: absolute;
+	top: 50px;
+	bottom: 0;
+	left: 75%;
+	right: 0;
+	overflow: auto;
+	float: right;
+	background: #f0f0f0;
 }
 
 

@@ -12,7 +12,7 @@ var fontexpert = angular
         templateUrl: 'views/upload.html',
         controller: 'UploadCtrl'
       })
-      .when('/view/:session_id', {
+      .when('/:session_id', {
         templateUrl: 'views/view.html',
         controller: 'ViewCtrl'
       });
@@ -20,6 +20,7 @@ var fontexpert = angular
 
 
 fontexpert.controller('UploadCtrl', function($scope, $upload, $rootScope, $location) {
+  $rootScope.psdData = {};
   $scope.onFileSelect = function($files) {
     //$files: an array of files selected, each file has name, size, and type.
     for (var i = 0; i < $files.length; i++) {
@@ -40,7 +41,7 @@ fontexpert.controller('UploadCtrl', function($scope, $upload, $rootScope, $locat
       }).success(function(data, status, headers, config) {
         // file is uploaded successfully
         $rootScope.psdData = data;
-        $location.path('/view/' + data.session_id);
+        $location.path('/' + data.session_id);
       });
       //.error(...)
       //.then(success, error, progress); 
